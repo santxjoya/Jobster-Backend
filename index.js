@@ -10,7 +10,7 @@ app.get('/nueva ruta', (req,res)=>{
   res.send('Hola mi server en express')
 });
 
-app.get('/task', (req,res)=>{
+app.get('/tasks', (req,res)=>{
   res.json({
     name: 'task 1',
     date: '18/02/2025'
