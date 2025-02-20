@@ -1,10 +1,14 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require('../config/db_connection')
+const User = require('./UserModel')
 
 const Task = sequelize.define('Task', {
   tas_id:{
     type: DataTypes.INTEGER,
-    allowNull:false
+    allowNull:false,
+    primaryKey: true,
+    autoIncrement: true,
+
   },
   tas_tittle:{
     type: DataTypes.STRING(255),
@@ -33,4 +37,5 @@ const Task = sequelize.define('Task', {
   tablename:'tasks',
   timestamps:false
 })
+Task.belongsTo(User, { foreignKey: 'use_id' });
 module.exports = Task;
