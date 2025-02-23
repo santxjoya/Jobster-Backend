@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Establecer el directorio de trabajo dentro del contenedor
-WORKDIR /app
+WORKDIR /src
 
 # Copiar los archivos de configuración del proyecto
 COPY package.json package-lock.json ./
