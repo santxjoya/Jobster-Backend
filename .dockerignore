@@ -1,0 +1,25 @@
+# Ignorar node_modules (se instalarán dentro del contenedor)
+node_modules/
+
+# Ignorar logs y archivos de depuración
+npm-debug.log
+
+# Ignorar archivos de Docker (opcional)
+Dockerfile
+.dockerignore
+
+# Ignorar archivos de control de versiones
+.git/
+.gitignore
+
+# Ignorar archivos de IDE y editor
+.vscode/
+.idea/
+
+# Ignorar archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de construcción y distribución
+dist/
+build/
