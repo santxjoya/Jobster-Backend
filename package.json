@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/index.js \"Entorno de Prueba\"",
-    "start": "node src/index.js \"Entorno de Producción\"",
+    "dev": "nodemon index.js \"Entorno de Prueba\"",
+    "start": "node index.js \"Entorno de Producción\"",
     "lint": "eslint"
   },
   "keywords": [],
