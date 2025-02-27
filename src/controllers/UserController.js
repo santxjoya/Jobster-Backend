@@ -21,9 +21,35 @@ const createUser = [
     }
   }
 ];
-const getAllUsers = [
+const getAllUsers = async (req,res) => {
+  try {
+    let { page } = req.query;
 
-];
+    page = parseInt(page) || 1;
+
+    const count = await user.count();
+
+    const totalPages = 10;
+    const limit = Math.ceil(count / totalPages);
+    const offset = (page - 1) * limit;
+
+    const users = await User.findAll({
+        limit,
+        offset
+    });
+
+    res.status(200).json({
+        totalItems: count,
+        totalPages,
+        currentPage: page,
+        pageSize: limit,
+        data: users
+    });
+} catch (error) {
+    res.status(500).json({ error: error.message });
+}
+
+};
 const getUserById = [
 
 ];
