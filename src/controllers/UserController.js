@@ -27,7 +27,7 @@ const getAllUsers = async (req,res) => {
 
     page = parseInt(page) || 1;
 
-    const count = await user.count();
+    const count = await User.count();
 
     const totalPages = 10;
     const limit = Math.ceil(count / totalPages);
