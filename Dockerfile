@@ -1,22 +1,22 @@
-# Usar una imagen base de Node.js
+# Se usa la imagen base de Node.js
 FROM node:18-alpine
 
-# Establecer el directorio de trabajo dentro del contenedor
+# Se Establece el directorio de trabajo dentro del contenedor
 WORKDIR /src
 
-# Copiar los archivos de configuración del proyecto
+# Copia los archivos de configuración del proyecto
 COPY package.json package-lock.json ./
 
-# Instalar las dependencias del proyecto
+# Instala las dependencias del proyecto
 RUN npm install
 
-# Copiar el resto del código de la aplicación
+# Copia el resto del código de la aplicación
 COPY . .
 
-# Copiar el archivo .env (si lo usas)
+# Copia el archivo .env
 COPY .env .
 
-# Exponer el puerto en el que la API escucha
+# Expone el puerto en el que la API escucha
 EXPOSE 3000
 
 # Comando para ejecutar la aplicación
