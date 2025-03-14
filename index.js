@@ -1,6 +1,9 @@
 const express = require('express');
+const sequelize = require('./src/config/db_connection');
+const userRouter = require('./src/routes/users');
+const port = process.env.PORT;
 const app = express();
-const port = 3000;
+app.use(express.json());
 
 app.get('/', (req,res)=>{
   res.send('Hola mi server en express')
@@ -10,13 +13,17 @@ app.get('/nueva ruta', (req,res)=>{
   res.send('Hola mi server en express')
 });
 
-app.get('/tasks', (req,res)=>{
-  res.json({
-    name: 'task 1',
-    date: '18/02/2025'
-  })
-});
+app.use('/api',userRouter)
 
 app.listen(port,()=>{
   console.log("Escuchando en el puerto: " + port)
 })
+
+sequelize.sync().then(() => {
+  console.log('Base de datos sincronizada');
+  app.listen(port, () => {
+      console.log(`Servidor escuchando en http://localhost:${port}`);
+  });
+}).catch(err => {
+  console.error('Error al sincronizar la base de datos', err);
+});
