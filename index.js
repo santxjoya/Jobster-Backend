@@ -15,10 +15,6 @@ app.get('/nueva ruta', (req,res)=>{
 
 app.use('/api',userRouter)
 
-app.listen(port,()=>{
-  console.log("Escuchando en el puerto: " + port)
-})
-
 sequelize.sync().then(() => {
   console.log('Base de datos sincronizada');
   app.listen(port, () => {
