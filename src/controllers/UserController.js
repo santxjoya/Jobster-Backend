@@ -3,7 +3,7 @@ const {body, validationResult} = require('express-validator');
 
 const createUser = [
   body('use_name').trim().notEmpty().withMessage('El nombre es requerido.')
-    .isLength({min: 2, max: 255}).withMessage('El nombre debe tener entre 2 a 255 caracteres')
+    .isLength({min: 2, max: 55}).withMessage('El nombre debe tener entre 2 a 255 caracteres')
     .matches(/^[a-zA-ZÁÉÍÓÚÑ\s]+$/).withMessage('El nombre solo puede contener letras.'),
   body('use_mail').trim().notEmpty().withMessage('El correo electrónico es requerido.')
     .isEmail().withMessage('El correo electrónico no es válido.').normalizeEmail(),
@@ -62,7 +62,28 @@ const getUserById = async (req, res) => {
   }
 };
 const updateUser = [
-
+  body('use_name').trim().optional()
+    .isLength({min: 2, max:55}).withMessage('El nombre debe tener entre 2 a 55 caracteres')
+    .matches(/^[a-zA-ZÁÉÍÓÚÑ\s]+$/).withMessage('El nombre solo puede contener letras.'),
+  body('use_mail').trim().optional()
+    .isEmail().withMessage("El correo electrónico no es válido.").normalizeEmail(),
+  async (req,res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      const allErrors = errors.array().map(error=>error.msg);
+      return res.status(400).json({errors: allErrors});
+    }
+    try{
+      const user = await User.findByPk(req.params.id);
+      if(!user){
+        return res.status(404).json({message: 'Usuario no encontrado'});
+      }
+      await user.update(req.body);
+      res.status(200).json(user);
+    } catch(error) {
+      res.status(400).json({error: error.message});
+    }
+  }
 ];
 const updateOneFieldUser = [
 
