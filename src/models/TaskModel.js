@@ -34,7 +34,7 @@ const Task = sequelize.define('Task', {
   }
 
 },{
-  tablename:'tasks',
+  tableName:'tasks',
   timestamps:false
 })
 Task.belongsTo(User, { foreignKey: 'use_id' });

@@ -10,7 +10,7 @@ const User = sequelize.define('User', {
 
   },
   use_name:{
-    type: DataTypes.STRING(255),
+    type: DataTypes.STRING(55),
     allowNull:false,
 
   },
@@ -20,7 +20,7 @@ const User = sequelize.define('User', {
 
   }
 },{
-  tablename:'users',
+  tableName:'users',
   timestamps:false
 })
 module.exports = User;
